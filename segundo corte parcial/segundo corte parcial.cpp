@@ -1,11 +1,11 @@
-//AVANCE PARCIAL						JUAN DAVID VERA ROJAS 
+//PARCIAL PARTE PRACTICA SEGUNDO CORTE						JUAN DAVID VERA ROJAS 
 #include <iostream>
 using namespace std;
 
 double calculartotal(double distancia[], double costokm[], int numviajes) {
 	double total = 0;
 	for (int i = 0; i < numviajes; i++) {
-		total = distancia[i] * costokm[i];
+		total += distancia[i] * costokm[i];
 
 	}
 	return total;
@@ -13,10 +13,10 @@ double calculartotal(double distancia[], double costokm[], int numviajes) {
 double promediodistancia(double distancia[], int numviajes) {
 	double prom = 0;
 	for (int i = 0; i < numviajes; i++) {
-		prom = distancia[i] / numviajes;
+		prom += distancia[i] / numviajes;
 	}
 	return prom;
-	}
+	} 
 
 
 int main() {
@@ -24,6 +24,9 @@ int main() {
 	int numviajes;
 	double cantidadcon;
 	double distancia[10], costo[10];
+	double totalganado[10], promedio[10];
+	double mayoringreso = 0;
+	string mejorconductor;
 	
 	cout << "Ingrese la cantidad de conductores " << endl;
 	cin >> cantidadcon;
@@ -59,10 +62,26 @@ int main() {
 				cin >> costo[j];
 			}
 		}
-		 
-	}
-	
+		totalganado[i] = calculartotal(distancia, costo, numviajes);
+		promedio[i] = promediodistancia(distancia, numviajes);
 
+		if (totalganado[i] > mayoringreso) {
+			mayoringreso = totalganado[i];
+			mejorconductor = nombres[i];
+		}
+	}
+
+	cout << "======================================= RESUME DE VENTAS ======================================" << endl;
+	cout << "conductor			| total ganado ($)					| promedio distancia" << endl;
+	cout << "===============================================================================================" << endl;
+	for (int i = 0; i < cantidadcon; i++) {
+		cout << nombres[i] << "					"	<< totalganado[i] << "$" << "					"  <<promedio[i] << "km" << endl;
+
+	}
+	cout << "===============================================================================================" << endl;
+	cout << "el conductor con mas ganancias fue " << mejorconductor << "     con " << mayoringreso << "$";
+
+	
 
 
 
